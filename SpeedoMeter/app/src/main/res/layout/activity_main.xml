@@ -29,19 +29,46 @@
             android:id="@+id/appName"
             android:textColor="@color/colorText"
             android:text="@string/app_name"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="28sp"
+            android:src="@drawable/notification"/>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <com.github.anastr.speedviewlib.AwesomeSpeedometer
         android:id="@+id/speedometer"
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
+        android:layout_margin="40dp"
         app:sv_minSpeed="0"
         android:layout_height="300dp"
+        app:sv_indicatorColor="@color/colorIndicatorSpeedometer"
+        app:sv_markColor="@color/colorMarkSpeedometer"
+        app:sv_textColor="@color/colorTextSpeedometer"
+        app:sv_speedometerColor="@color/colorSpeedometer"
+        app:sv_backgroundCircleColor="@color/colorBackgroundSpeedometer"
         app:sv_indicator="TriangleIndicator"
-        app:sv_maxSpeed="240"/>
+        app:sv_maxSpeed="240"
+        app:sv_speedTextSize="43sp"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/featuresLayout">
+
+
+
+
+    </LinearLayout>
+
+
 
 
 </LinearLayout>

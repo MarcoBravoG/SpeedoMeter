@@ -22,14 +22,15 @@ public class MainActivity extends Activity {
         AssetManager am=this.getAssets();
         appName= (TextView) findViewById(R.id.appName);
         Typeface typeface=Typeface.createFromAsset(am,String.format(Locale.US,"fonts/%s","PoiretOne-Regular.ttf"));
+        Typeface gaugefont=Typeface.createFromAsset(am,String.format(Locale.US,"fonts/%s","Orbitron-Regular.ttf"));
         appName.setTypeface(typeface);
         Gauge gauge= (Gauge) findViewById(R.id.speedometer);
-        gauge.setTextTypeface(typeface);
-        gauge.setSpeedTextTypeface(typeface);
+        gauge.setTextTypeface(gaugefont);
+        gauge.setSpeedTextTypeface(gaugefont);
         gauge.setTextSize(24);
         gauge.setSpeedTextSize(32);
         gauge.setUnit("KM/HR");
-        
+
 
 
 
