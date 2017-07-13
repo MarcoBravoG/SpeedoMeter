@@ -19,6 +19,7 @@
             android:layout_margin="10dp"
             android:layout_height="28dp"
             android:backgroundTint="#734DA2"
+            android:id="@+id/menuIcon"
             android:background="@drawable/menu_icon"/>
 
         <TextView
@@ -32,6 +33,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:id="@+id/notificationIcon"
             android:layout_marginLeft="28sp"
             android:src="@drawable/notification"/>
 

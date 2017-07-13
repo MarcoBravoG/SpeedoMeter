@@ -6,25 +6,55 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.anastr.speedviewlib.base.Gauge;
+import com.github.anastr.speedviewlib.base.Speedometer;
 
 import java.util.Locale;
 
 public class MainActivity extends Activity {
+    //menu layout
+    LinearLayout menuLayout;
     TextView appName;
+    ImageView menuIcon;
+    ImageView notification;
+    //Gauge Layout
+    Gauge gauge;
+    //Features Layout
+    TextView totalDistance;
+    //Relative Layout
+    TextView averageSpeed;
+    TextView topSpeed;
+    //Bottom Button Layout
+    Button startRide;
+    Button stopRide;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AssetManager am=this.getAssets();
+        menuLayout = (LinearLayout) findViewById(R.id.menuLayout);
         appName= (TextView) findViewById(R.id.appName);
+        menuIcon= (ImageView) findViewById(R.id.menuIcon);
+        notification= (ImageView) findViewById(R.id.notificationIcon);
+        gauge = (Gauge) findViewById(R.id.speedometer);
+        totalDistance= (TextView) findViewById(R.id.totalDistance);
+        averageSpeed= (TextView) findViewById(R.id.averageSpeed);
+        topSpeed= (TextView) findViewById(R.id.topSpeed);
+        startRide= (Button) findViewById(R.id.startRideButton);
+        stopRide= (Button) findViewById(R.id.stopRideButton);
+
+        AssetManager am=this.getAssets();
         Typeface typeface=Typeface.createFromAsset(am,String.format(Locale.US,"fonts/%s","PoiretOne-Regular.ttf"));
         Typeface gaugefont=Typeface.createFromAsset(am,String.format(Locale.US,"fonts/%s","Orbitron-Regular.ttf"));
         appName.setTypeface(typeface);
-        Gauge gauge= (Gauge) findViewById(R.id.speedometer);
         gauge.setTextTypeface(gaugefont);
         gauge.setSpeedTextTypeface(gaugefont);
         gauge.setTextSize(24);
