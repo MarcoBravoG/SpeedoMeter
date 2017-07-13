@@ -39,36 +39,141 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/speedometerLayout">
 
-    <com.github.anastr.speedviewlib.AwesomeSpeedometer
-        android:id="@+id/speedometer"
-        android:layout_width="match_parent"
-        android:layout_margin="40dp"
-        app:sv_minSpeed="0"
-        android:layout_height="300dp"
-        app:sv_indicatorColor="@color/colorIndicatorSpeedometer"
-        app:sv_markColor="@color/colorMarkSpeedometer"
-        app:sv_textColor="@color/colorTextSpeedometer"
-        app:sv_speedometerColor="@color/colorSpeedometer"
-        app:sv_backgroundCircleColor="@color/colorBackgroundSpeedometer"
-        app:sv_indicator="TriangleIndicator"
-        app:sv_maxSpeed="240"
-        app:sv_speedTextSize="43sp"/>
+        <com.github.anastr.speedviewlib.AwesomeSpeedometer
+            android:id="@+id/speedometer"
+            android:layout_width="match_parent"
+            app:sv_minSpeed="0"
+            android:layout_height="300dp"
+            app:sv_indicatorColor="@color/colorIndicatorSpeedometer"
+            app:sv_markColor="@color/colorMarkSpeedometer"
+            app:sv_textColor="@color/colorTextSpeedometer"
+            app:sv_speedometerColor="@color/colorSpeedometer"
+            app:sv_backgroundCircleColor="@color/colorBackgroundSpeedometer"
+            app:sv_indicator="TriangleIndicator"
+            app:sv_maxSpeed="240"
+            app:sv_speedTextSize="43sp"/>
     </LinearLayout>
-    
+
+
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:id="@+id/featuresLayout">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total"
+                android:layout_gravity="top"
+                android:textColor="@color/colorText"
+                android:textSize="23sp" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                android:layout_marginLeft="15sp"
+                android:id="@+id/totalDistance"
+                android:textColor="@color/colorText"
+                android:text="24KM"/>
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="@color/colorDividerSpeedometer"/>
 
 
 
     </LinearLayout>
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="113dp"
+            android:gravity="center"
+            android:text="Average"
+            android:textColor="@color/colorText"
+            android:textSize="16sp" />
 
 
+        <TextView
+            android:id="@+id/top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="23dp"
+            android:layout_toEndOf="@+id/average"
+            android:gravity="center"
+            android:text="Top"
+            android:textColor="@color/colorText"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/average"
+            android:layout_toStartOf="@+id/top"
+            android:text="34"
+            android:id="@+id/averageSpeed"
+            android:textColor="@color/colorText"
+            android:textSize="23dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/top"
+            android:layout_below="@+id/top"
+            android:text="100"
+            android:id="@+id/topSpeed"
+            android:textColor="@color/colorText"
+            android:textSize="23dp" />
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="bottom"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/startRideButton"
+            android:text="START RIDE"
+            app:theme="@style/Widget.AppCompat.Button.Colored"
+            android:background="#F44336"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/stopRideButton"
+            android:visibility="gone"
+            android:text="STOP RIDE"
+            app:theme="@style/Widget.AppCompat.Button.Colored"/>
+    </LinearLayout>
 </LinearLayout>

@@ -13,5 +13,6 @@
     <color name="colorTextSpeedometer">#E4F5FD</color>
     <color name="colorSpeedometer">#2A3D56</color>
     <color name="colorBackgroundSpeedometer">#1D3148</color>
+    <color name="colorDividerSpeedometer">#2E2F41</color>
 
 </resources>
