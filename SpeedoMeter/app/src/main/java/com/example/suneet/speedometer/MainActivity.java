@@ -3,6 +3,8 @@ package com.example.suneet.speedometer;
 import android.app.Activity;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +35,9 @@ public class MainActivity extends Activity {
     Button startRide;
     Button stopRide;
 
+    //LocationServices
+    LocationManager locationManager;
+    Location location;
 
 
 
@@ -60,6 +65,8 @@ public class MainActivity extends Activity {
         gauge.setTextSize(24);
         gauge.setSpeedTextSize(32);
         gauge.setUnit("KM/HR");
+
+
 
 
 
