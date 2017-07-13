@@ -6,6 +6,7 @@
     <color name="colorBlack">#4d4c50</color>
     <color name="colorBackground">#12111F</color>
     <color name="colorText">#A4A5A9</color>
+    <color name="colorRideButton">#F44336</color>
 
     <!--Speedometer Customization !-->
     <color name="colorIndicatorSpeedometer">#DF0B19</color>
