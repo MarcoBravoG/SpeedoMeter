@@ -15,7 +15,7 @@ public class RideData {
     private double avgSpeed;
 
     public RideData() {
-        isFirst=false;
+        isFirst=true;
         time=0;
         totalTime=0;
         distanceKM=0;

@@ -80,7 +80,8 @@ public class DataServices implements LocationListener {
             rideData.distanceTotal(location.distanceTo(prevlocation));
             lastLong=currentLong;
             lastLat=currentLat;
-            Log.e("TAG", "onLocationChanged:DISTANCE RIDE"+rideData.getDistanceM());
+            Log.e("TAG", "onLocationChanged:DISTANCE RIDE "+location.distanceTo(prevlocation));
+            Log.e("TAG", "onLocationChanged:DISTANCE RIDE "+location.getLatitude());
         }
         if(location.hasSpeed())
         {

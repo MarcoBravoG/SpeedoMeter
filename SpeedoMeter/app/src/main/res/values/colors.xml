@@ -7,6 +7,9 @@
     <color name="colorBackground">#12111F</color>
     <color name="colorText">#A4A5A9</color>
     <color name="colorRideButton">#F44336</color>
+    <color name="colorSignalGreen">#00FF00</color>
+    <color name="colorSignalRed">#FF0000</color>
+    <color name="colorSignalYellow">#f0f020</color>
 
     <!--Speedometer Customization !-->
     <color name="colorIndicatorSpeedometer">#DF0B19</color>

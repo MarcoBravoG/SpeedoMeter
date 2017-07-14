@@ -1,6 +1,7 @@
 package com.example.suneet.speedometer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -47,6 +48,14 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        RideData rideData=new RideData();
+        if(rideData.isFirst)
+        {
+            Intent i=new Intent(this,StartScreen.class);
+            startActivity(i);
+            rideData.setFirst(false);
+        }
+
         menuLayout = (LinearLayout) findViewById(R.id.menuLayout);
         appName= (TextView) findViewById(R.id.appName);
         menuIcon= (ImageView) findViewById(R.id.menuIcon);
@@ -67,7 +76,7 @@ public class MainActivity extends Activity {
         gauge.setTextSize(24);
         gauge.setSpeedTextSize(32);
         gauge.setUnit("KM/HR");
-        final RideData rideData=new RideData();
+
 
         final DataServices dataServices=new DataServices(this);
         dataServices.onRun();
@@ -75,7 +84,7 @@ public class MainActivity extends Activity {
             @Override
             public void onSpeedChange(Gauge gauge, boolean isSpeedUp, boolean isByTremble) {
                 
-                gauge.setSpeedAt((float) rideData.getCurrentSpeed());
+
                 Log.e("TAG", "onSpeedChange: "+gauge.getSpeed() );
             }
         });
