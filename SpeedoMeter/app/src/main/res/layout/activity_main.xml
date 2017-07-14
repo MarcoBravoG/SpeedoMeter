@@ -82,7 +82,6 @@
                 android:layout_gravity="top"
                 android:textColor="@color/colorText"
                 android:textSize="23sp" />
-            
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -91,6 +90,8 @@
                 android:id="@+id/totalDistance"
                 android:textColor="@color/colorText"
                 android:text="24KM"/>
+
+
 
 
         </LinearLayout>

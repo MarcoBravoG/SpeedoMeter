@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.github.anastr.speedviewlib.base.Gauge;
 import com.github.anastr.speedviewlib.base.Speedometer;
+import com.github.anastr.speedviewlib.util.OnSpeedChangeListener;
+
 
 import java.util.Locale;
 
@@ -65,6 +67,19 @@ public class MainActivity extends Activity {
         gauge.setTextSize(24);
         gauge.setSpeedTextSize(32);
         gauge.setUnit("KM/HR");
+        final RideData rideData=new RideData();
+
+        final DataServices dataServices=new DataServices(this);
+        dataServices.onRun();
+        gauge.setOnSpeedChangeListener(new OnSpeedChangeListener() {
+            @Override
+            public void onSpeedChange(Gauge gauge, boolean isSpeedUp, boolean isByTremble) {
+                
+                gauge.setSpeedAt((float) rideData.getCurrentSpeed());
+                Log.e("TAG", "onSpeedChange: "+gauge.getSpeed() );
+            }
+        });
+
 
 
 
