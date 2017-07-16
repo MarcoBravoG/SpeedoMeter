@@ -49,12 +49,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RideData rideData=new RideData();
-        if(rideData.isFirst)
-        {
-            Intent i=new Intent(this,StartScreen.class);
-            startActivity(i);
-            rideData.setFirst(false);
-        }
+
 
         menuLayout = (LinearLayout) findViewById(R.id.menuLayout);
         appName= (TextView) findViewById(R.id.appName);
