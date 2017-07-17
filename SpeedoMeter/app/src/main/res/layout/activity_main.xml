@@ -171,6 +171,7 @@
             android:layout_height="match_parent"
             android:text="LOCATION SUNEET"
             android:paddingLeft="14dp"
+            android:ellipsize="marquee"
             android:paddingBottom="5dp"
             android:gravity="start|bottom"
             android:id="@+id/location"
