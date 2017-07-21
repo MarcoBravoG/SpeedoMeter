@@ -88,6 +88,7 @@ public class DataServices implements LocationListener {
             rideData.setCurrentSpeed(location.getSpeed());
             Log.e("TAG", "onLocationChanged: "+location.getSpeed() );
         }
+        Log.e("", "Suneet Sri onLocationChanged: "+location.getSpeed() );
 
 
 

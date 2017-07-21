@@ -71,18 +71,12 @@ public class MainActivity extends Activity {
         gauge.setTextSize(24);
         gauge.setSpeedTextSize(32);
         gauge.setUnit("KM/HR");
-
+        gauge.speedTo(150);
 
         final DataServices dataServices=new DataServices(this);
         dataServices.onRun();
-        gauge.setOnSpeedChangeListener(new OnSpeedChangeListener() {
-            @Override
-            public void onSpeedChange(Gauge gauge, boolean isSpeedUp, boolean isByTremble) {
-                
 
-                Log.e("TAG", "onSpeedChange: "+gauge.getSpeed() );
-            }
-        });
+
 
 
 
