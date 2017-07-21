@@ -71,10 +71,12 @@ public class MainActivity extends Activity {
         gauge.setTextSize(24);
         gauge.setSpeedTextSize(32);
         gauge.setUnit("KM/HR");
-        gauge.speedTo(150);
+        Log.e("TAG", "onCreate: "+gauge.getSpeed());
 
-        final DataServices dataServices=new DataServices(this);
+
+        final DataServices dataServices=new DataServices(this,gauge);
         dataServices.onRun();
+
 
 
 

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.github.anastr.speedviewlib.SpeedView;
+import com.github.anastr.speedviewlib.base.Gauge;
 
 /**
  * Created by suneet on 14/7/17.
@@ -27,12 +28,14 @@ public class DataServices implements LocationListener {
     double currentLong = 0;
     double lastLat = 0;
     double lastLong = 0;
+    Gauge gauge;
     Snackbar snackbar;
     Context c;
 
 
-    public DataServices(Context c) {
+    public DataServices(Context c,Gauge gauge) {
         this.c = c;
+        this.gauge=gauge;
     }
 
     public void onRun() {
@@ -86,9 +89,11 @@ public class DataServices implements LocationListener {
         if(location.hasSpeed())
         {
             rideData.setCurrentSpeed(location.getSpeed());
-            Log.e("TAG", "onLocationChanged: "+location.getSpeed() );
+
+
         }
-        Log.e("", "Suneet Sri onLocationChanged: "+location.getSpeed() );
+        Log.e("TAG", "onLocationChanged: "+location.getSpeed() );
+        gauge.speedTo(location.getSpeed());
 
 
 
