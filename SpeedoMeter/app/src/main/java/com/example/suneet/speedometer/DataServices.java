@@ -28,6 +28,7 @@ import java.util.Locale;
 public class DataServices implements LocationListener {
 
     LocationManager locationManager;
+    Update update;
     Location prevlocation;
     RideData rideData;
     double currentLat = 0;
@@ -38,6 +39,7 @@ public class DataServices implements LocationListener {
     Snackbar snackbar;
     Context c;
     Geocoder geocoder;
+    String currentLocation="Fetching Details..Please Wait";
 
 
     public DataServices(Context c,Gauge gauge) {
@@ -49,6 +51,7 @@ public class DataServices implements LocationListener {
         locationManager = (LocationManager) c.getSystemService(c.LOCATION_SERVICE);
         boolean check = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         rideData=new RideData();
+        update=(Update)c;
         prevlocation=new Location("null");
         geocoder=new Geocoder(c, Locale.ENGLISH);
         boolean check1 = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -78,8 +81,14 @@ public class DataServices implements LocationListener {
     public void onLocationChanged(Location location) {
 
         try {
-            List<Address> list=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),2);
-            Log.e("TAG", "onLocationChanged: "+list.get(0).getAddressLine(0)+" "+list.get(0).getLocality()+ " "+list.get(0).getAdminArea() );
+            List<Address> list=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),5);
+           // Log.e("TAG", "onLocationChanged: "+list.get(0).getAddressLine(0)+" \n "+list.get(0).getLocality()+ " \n "+list.get(0).getSubLocality()
+
+            currentLocation=list.get(0).getAddressLine(0)+" "+list.get(0).getLocality()+" "+list.get(0).getSubLocality()+"-"+list.get(0).getPostalCode();
+
+            currentLocation=currentLocation.replace("null","");
+            update.updateLocation(currentLocation);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

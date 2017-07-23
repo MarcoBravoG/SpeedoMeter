@@ -6,5 +6,10 @@ package com.example.suneet.speedometer;
 
 public interface Update {
     void updateLocation(String location);
+    void updateSpeedGauge(float speed);
+    void updateTotalDistance(double distance);
+    void updateAverage(double avg);
+    void updateTopSpeed(double top);
+
 
 }

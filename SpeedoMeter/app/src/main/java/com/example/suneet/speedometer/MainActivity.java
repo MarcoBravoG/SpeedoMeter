@@ -34,6 +34,9 @@ public class MainActivity extends Activity implements Update{
     //Relative Layout
     TextView averageSpeed;
     TextView topSpeed;
+    //LinearLayout
+    TextView currentLocation;
+
     //Bottom Button Layout
     Button startRide;
     Button stopRide;
@@ -61,8 +64,10 @@ public class MainActivity extends Activity implements Update{
         totalDistance= (TextView) findViewById(R.id.totalDistance);
         averageSpeed= (TextView) findViewById(R.id.averageSpeed);
         topSpeed= (TextView) findViewById(R.id.topSpeed);
+        currentLocation= (TextView) findViewById(R.id.location);
         startRide= (Button) findViewById(R.id.startRideButton);
         stopRide= (Button) findViewById(R.id.stopRideButton);
+
 
         AssetManager am=this.getAssets();
         Typeface typeface=Typeface.createFromAsset(am,String.format(Locale.US,"fonts/%s","PoiretOne-Regular.ttf"));
@@ -79,6 +84,32 @@ public class MainActivity extends Activity implements Update{
         dataServices.onRun();
 
 
+
+    }
+
+    @Override
+    public void updateLocation(String location) {
+        currentLocation.setText(location);
+
+    }
+
+    @Override
+    public void updateSpeedGauge(float speed) {
+
+    }
+
+    @Override
+    public void updateTotalDistance(double distance) {
+
+    }
+
+    @Override
+    public void updateAverage(double avg) {
+
+    }
+
+    @Override
+    public void updateTopSpeed(double top) {
 
     }
 }
