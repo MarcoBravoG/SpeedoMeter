@@ -21,7 +21,7 @@ import com.github.anastr.speedviewlib.util.OnSpeedChangeListener;
 
 import java.util.Locale;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements Update{
     //menu layout
     LinearLayout menuLayout;
     TextView appName;
@@ -41,6 +41,8 @@ public class MainActivity extends Activity {
     //LocationServices
     LocationManager locationManager;
     Location location;
+
+
 
 
 
@@ -71,18 +73,10 @@ public class MainActivity extends Activity {
         gauge.setTextSize(24);
         gauge.setSpeedTextSize(32);
         gauge.setUnit("KM/HR");
-        Log.e("TAG", "onCreate: "+gauge.getSpeed());
 
 
         final DataServices dataServices=new DataServices(this,gauge);
         dataServices.onRun();
-
-
-
-
-
-
-
 
 
 

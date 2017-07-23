@@ -3,6 +3,8 @@ package com.example.suneet.speedometer;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,6 +16,10 @@ import android.widget.Toast;
 
 import com.github.anastr.speedviewlib.SpeedView;
 import com.github.anastr.speedviewlib.base.Gauge;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by suneet on 14/7/17.
@@ -31,6 +37,7 @@ public class DataServices implements LocationListener {
     Gauge gauge;
     Snackbar snackbar;
     Context c;
+    Geocoder geocoder;
 
 
     public DataServices(Context c,Gauge gauge) {
@@ -39,10 +46,11 @@ public class DataServices implements LocationListener {
     }
 
     public void onRun() {
-        locationManager = (LocationManager) c.getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) c.getSystemService(c.LOCATION_SERVICE);
         boolean check = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         rideData=new RideData();
         prevlocation=new Location("null");
+        geocoder=new Geocoder(c, Locale.ENGLISH);
         boolean check1 = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         if (!(check && check1)) {
             Toast.makeText(c, "Please turn on Location Services", Toast.LENGTH_SHORT).show();
@@ -59,7 +67,7 @@ public class DataServices implements LocationListener {
                 // for ActivityCompat#requestPermissions for more details.
                 return;
             }
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) this);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,  this);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,this);
         }
 
@@ -68,9 +76,17 @@ public class DataServices implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
+
+        try {
+            List<Address> list=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),2);
+            Log.e("TAG", "onLocationChanged: "+list.get(0).getAddressLine(0)+" "+list.get(0).getLocality()+ " "+list.get(0).getAdminArea() );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         currentLat=location.getLatitude();
         currentLong=location.getLongitude();
-        if(rideData.isFirst())
+        /*if(rideData.isFirst())
         {
             lastLat=currentLat;
             lastLong=currentLong;
@@ -91,9 +107,9 @@ public class DataServices implements LocationListener {
             rideData.setCurrentSpeed(location.getSpeed());
 
 
-        }
-        Log.e("TAG", "onLocationChanged: "+location.getSpeed() );
-        gauge.speedTo(location.getSpeed());
+        }*/
+        Log.e("TAG", "onLocationChanged: "+location.getSpeed()*3.5 );
+        gauge.speedTo((float) (location.getSpeed()*3.5));
 
 
 
@@ -101,6 +117,7 @@ public class DataServices implements LocationListener {
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
+        Log.e("TAG",provider+ "onStatusChanged: "+status +"Satellited"+extras.get("satellites") );
 
     }
 
