@@ -9,6 +9,7 @@ import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,7 +22,7 @@ import com.github.anastr.speedviewlib.util.OnSpeedChangeListener;
 
 import java.util.Locale;
 
-public class MainActivity extends Activity implements Update{
+public class MainActivity extends Activity implements Update, View.OnClickListener {
     //menu layout
     LinearLayout menuLayout;
     TextView appName;
@@ -45,7 +46,7 @@ public class MainActivity extends Activity implements Update{
     LocationManager locationManager;
     Location location;
 
-
+    DataServices dataServices;
 
 
 
@@ -80,8 +81,9 @@ public class MainActivity extends Activity implements Update{
         gauge.setUnit("KM/HR");
 
 
-        final DataServices dataServices=new DataServices(this,gauge);
-        dataServices.onRun();
+        startRide.setOnClickListener(this);
+        stopRide.setOnClickListener(this);
+
 
 
 
@@ -95,21 +97,44 @@ public class MainActivity extends Activity implements Update{
 
     @Override
     public void updateSpeedGauge(float speed) {
+        gauge.realSpeedTo(speed);
+
+
 
     }
 
     @Override
     public void updateTotalDistance(double distance) {
-
+        totalDistance.setText((int)distance+"");
     }
 
     @Override
     public void updateAverage(double avg) {
-
+        averageSpeed.setText((int) avg+"");
     }
 
     @Override
     public void updateTopSpeed(double top) {
+        topSpeed.setText((int)top+"");
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.startRideButton)
+        {
+            dataServices = new DataServices(this,gauge);
+            dataServices.onRun();
+            startRide.setVisibility(View.GONE);
+            stopRide.setVisibility(View.VISIBLE);
+        }
+        if (v.getId()==R.id.stopRideButton)
+        {
+            Log.e("", "onClick: asasas" );
+            startRide.setVisibility(View.VISIBLE);
+            gauge.stop();
+            stopRide.setVisibility(View.GONE);
+
+        }
     }
 }

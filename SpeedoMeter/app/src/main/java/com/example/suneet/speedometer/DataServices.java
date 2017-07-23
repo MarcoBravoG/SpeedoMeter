@@ -9,6 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
@@ -42,6 +43,7 @@ public class DataServices implements LocationListener {
     String currentLocation="Fetching Details..Please Wait";
 
 
+
     public DataServices(Context c,Gauge gauge) {
         this.c = c;
         this.gauge=gauge;
@@ -72,10 +74,14 @@ public class DataServices implements LocationListener {
             }
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,  this);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,this);
+
         }
 
 
+
+
     }
+
 
     @Override
     public void onLocationChanged(Location location) {
@@ -140,4 +146,5 @@ public class DataServices implements LocationListener {
         Toast.makeText(c,"Provider disabled "+provider,Toast.LENGTH_SHORT).show();
 
     }
+
 }
