@@ -89,7 +89,7 @@
                 android:layout_marginLeft="15sp"
                 android:id="@+id/totalDistance"
                 android:textColor="@color/colorText"
-                android:text="24KM"/>
+                android:text="--"/>
 
 
 
@@ -141,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/average"
             android:layout_toStartOf="@+id/top"
-            android:text="34"
+            android:text="--"
             android:id="@+id/averageSpeed"
             android:textColor="@color/colorText"
             android:textSize="23dp" />
@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/top"
             android:layout_below="@+id/top"
-            android:text="100"
+            android:text="--"
             android:id="@+id/topSpeed"
             android:textColor="@color/colorText"
             android:textSize="23dp" />

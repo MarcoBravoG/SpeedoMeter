@@ -47,12 +47,20 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
     Location location;
 
     DataServices dataServices;
+    LocationDataService locationDataService;
+
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent i=getIntent();
+
+        if(i.getAction()==Intent.ACTION_CALL)
+        {
+            Log.e("CALL", "onCreate:CALL " );
+        }
         setContentView(R.layout.activity_main);
         RideData rideData=new RideData();
 
@@ -79,6 +87,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
         gauge.setTextSize(24);
         gauge.setSpeedTextSize(32);
         gauge.setUnit("KM/HR");
+        gauge.setTrembleDuration(2000);
 
 
         startRide.setOnClickListener(this);
@@ -123,8 +132,11 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
     public void onClick(View v) {
         if(v.getId()==R.id.startRideButton)
         {
-            dataServices = new DataServices(this,gauge);
-            dataServices.onRun();
+           /* dataServices = new DataServices(this,gauge);
+            dataServices.onRun();*/
+           locationDataService=new LocationDataService(this);
+            locationDataService.initiate();
+            locationDataService.onRun();
             startRide.setVisibility(View.GONE);
             stopRide.setVisibility(View.VISIBLE);
         }
