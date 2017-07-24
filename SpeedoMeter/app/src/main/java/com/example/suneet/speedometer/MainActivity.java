@@ -211,6 +211,10 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
             gauge.stop();
             stopRide.setVisibility(View.GONE);
             locationDataService.onStop();
+            if(receiver!=null) {
+                unregisterReceiver(receiver);
+            }
+
 
 
         }
