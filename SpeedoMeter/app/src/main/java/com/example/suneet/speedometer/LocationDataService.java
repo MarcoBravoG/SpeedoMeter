@@ -131,8 +131,14 @@ public class LocationDataService implements GoogleApiClient.OnConnectionFailedLi
             endLocation = location;
         }
         speed=(location.getSpeed())*(3.6);
-        distance=distance+((startLocation.distanceTo(location)));
-        distance=distance/1000;
+
+
+        if(location.getAccuracy()<startLocation.distanceTo(location))
+        {
+            distance=distance+((startLocation.distanceTo(location)));
+            distance=distance/1000;
+        }
+
 
         avgSpeed=distance/timeDiff;
 
@@ -147,7 +153,7 @@ public class LocationDataService implements GoogleApiClient.OnConnectionFailedLi
         update.updateTopSpeed(rideData.getMaxSpeed());
 
 
-        Log.e("HELLO", "Time Difference "+timeDiff );
+        Log.e("HELLO", "Average Speed"+avgSpeed);
         Log.e("TAG", "onLocationChanged: "+distance );
     }
 
