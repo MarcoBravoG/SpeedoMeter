@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.anastr.speedviewlib.base.Gauge;
 import com.github.anastr.speedviewlib.base.Speedometer;
@@ -76,6 +77,12 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
         currentLocation= (TextView) findViewById(R.id.location);
         startRide= (Button) findViewById(R.id.startRideButton);
         stopRide= (Button) findViewById(R.id.stopRideButton);
+        locationManager= (LocationManager) getSystemService(LOCATION_SERVICE);
+        if(!(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)))
+        {
+            Toast.makeText(MainActivity.this,"Turn on Location Services",Toast.LENGTH_LONG).show();
+        }
+
 
 
         AssetManager am=this.getAssets();
