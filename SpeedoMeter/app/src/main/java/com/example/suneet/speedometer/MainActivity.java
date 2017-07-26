@@ -179,6 +179,15 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
         this.registerReceiver(receiver,intentFilter);
     }
 
+    /*@Override
+    protected void onPause() {
+        super.onPause();
+        if(receiver!=null) {
+            unregisterReceiver(receiver);
+        }
+
+    }*/
+
     @Override
     protected void onStop() {
         super.onStop();
