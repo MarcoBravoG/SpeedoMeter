@@ -64,6 +64,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
     BroadcastReceiver receiver;
     LottieAnimationView lottieAnimationView;
     IntentFilter intentFilter;
+    boolean flag;
 
 
 
@@ -78,6 +79,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
 
         intentFilter = new IntentFilter(TELEPHONY_SERVICE);
         intentFilter.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
+
 
 
         if(i.getAction()==Intent.ACTION_CALL)
@@ -191,12 +193,12 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
     @Override
     protected void onStop() {
         super.onStop();
-        if(receiver!=null) {
+        if(receiver!=null && flag==true) {
           unregisterReceiver(receiver);
+            
         }
 
     }
-
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.startRideButton)
@@ -209,6 +211,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
                 locationDataService.onRun();
                 startRide.setVisibility(View.GONE);
                 stopRide.setVisibility(View.VISIBLE);
+                flag=true;
                // lottieAnimationView.setAnimation("success.json");
                 //lottieAnimationView.playAnimation();
             }
@@ -222,6 +225,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
             locationDataService.onStop();
             if(receiver!=null) {
                 unregisterReceiver(receiver);
+                flag=false;
             }
 
 

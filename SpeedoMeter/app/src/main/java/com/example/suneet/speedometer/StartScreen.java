@@ -54,7 +54,9 @@ public class StartScreen extends MaterialIntroActivity{
                 .title("Permissions")
 
                 .image(R.drawable.start_screen_image)
-                .possiblePermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_CONTACTS})
+                .possiblePermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION
+                        , Manifest.permission.READ_CONTACTS
+                        ,Manifest.permission.CALL_PRIVILEGED,Manifest.permission.BIND_INCALL_SERVICE})
                 //.neededPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_CONTACTS})
                 .build(),new MessageButtonBehaviour(new View.OnClickListener() {
             @Override
