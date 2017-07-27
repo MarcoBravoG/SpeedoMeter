@@ -13,6 +13,15 @@ public class RideData {
     private double currentSpeed;
     private double maxSpeed;
     private double avgSpeed;
+    private String startLocation;
+
+    public String getStartLocation() {
+        return startLocation;
+    }
+
+    public void setStartLocation(String startLocation) {
+        this.startLocation = startLocation;
+    }
 
     public RideData() {
         isFirst=true;
@@ -21,6 +30,7 @@ public class RideData {
         distanceKM=0;
         distanceM=0;
         currentSpeed=0;
+
         maxSpeed=0;
         avgSpeed=0;
     }

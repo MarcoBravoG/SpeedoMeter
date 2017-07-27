@@ -56,6 +56,8 @@ public class LocationDataService implements GoogleApiClient.OnConnectionFailedLi
 
 
 
+
+
     void initiate()
     {
         fusedLocationProviderApi= LocationServices.FusedLocationApi;
@@ -115,6 +117,7 @@ public class LocationDataService implements GoogleApiClient.OnConnectionFailedLi
             List<Address> list=geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),5);
             locationText=list.get(0).getAddressLine(0)+" "+list.get(0).getLocality()+" "+list.get(0).getSubLocality()+"-"+list.get(0).getPostalCode();
             locationText=locationText.replace("null","");
+            rideData.setStartLocation(locationText);
             update.updateLocation(locationText
             );
 

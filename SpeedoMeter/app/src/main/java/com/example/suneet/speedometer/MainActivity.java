@@ -3,6 +3,8 @@ package com.example.suneet.speedometer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +14,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
@@ -68,6 +72,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
     boolean flag;
     int throttle;
     RideData rideData;
+    private int notificationFlag=0;
 
 
 
@@ -211,6 +216,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
     public void onClick(View v) {
         if(v.getId()==R.id.startRideButton)
         {
+            notificationFlag++;
             if((checkGps())) {
            /* dataServices = new DataServices(this,gauge);
             dataServices.onRun();*/
@@ -236,7 +242,24 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
                 unregisterReceiver(receiver);
                 flag=false;
             }
-            Log.e("TAG", "onClick: "+ rideData.getTotalTime());
+            Notification notification=new Notification.Builder(this)
+                    .setSmallIcon(R.drawable.notification_icon)
+
+                    .setContentTitle("SPEEDOMETER")
+                    .setVibrate(new long[]{20,30,40})
+                    .setSound(RingtoneManager.getActualDefaultRingtoneUri(this,RingtoneManager.TYPE_NOTIFICATION))
+                    .setPriority(Notification.PRIORITY_DEFAULT)
+                    //.setSubText("Your Previous Journey Details")
+                    .setContentText("Start Location "+rideData.getStartLocation()+"\n"
+                                    +"End Location "+currentLocation.getText().toString()+"\n"
+                                    +"Time Elapsed" +rideData.getTotalTime()+"\n"
+                                    )
+                    .setContentTitle("Your Previous Journey Details")
+                    .build();
+            NotificationManager notificationManager= (NotificationManager) getSystemService(MainActivity.NOTIFICATION_SERVICE);
+           notificationManager.notify(notificationFlag,notification);
+
+
 
 
 
@@ -277,7 +300,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
                        public void onClick(DialogInterface dialog, int which) {
                            try {
                                throttle = Integer.parseInt(speedThrottle.getText().toString());
-                               Toast.makeText(MainActivity.this, "Throttle Set to "+throttle, Toast.LENGTH_SHORT).show();
+                               Toast.makeText(MainActivity.this, "Throttle Set to "+throttle+ " KM/HR", Toast.LENGTH_SHORT).show();
                            }
                            catch (Exception e)
                            {
