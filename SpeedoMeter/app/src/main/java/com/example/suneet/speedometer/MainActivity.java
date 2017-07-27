@@ -67,6 +67,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
     IntentFilter intentFilter;
     boolean flag;
     int throttle;
+    RideData rideData;
 
 
 
@@ -89,7 +90,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
             Log.e("CALL", "onCreate:CALL " );
         }
         setContentView(R.layout.activity_main);
-        //RideData rideData=new RideData();
+
 
         menuLayout = (LinearLayout) findViewById(R.id.menuLayout);
         appName= (TextView) findViewById(R.id.appName);
@@ -151,6 +152,11 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
     public void updateLocation(String location) {
         currentLocation.setText(location);
 
+    }
+
+    @Override
+    public void rideData(RideData rideData) {
+        this.rideData=rideData;
     }
 
     @Override
@@ -229,6 +235,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
                 unregisterReceiver(receiver);
                 flag=false;
             }
+            Log.e("TAG", "onClick: "+ rideData.getTotalTime());
 
 
 

@@ -91,6 +91,7 @@ public class LocationDataService implements GoogleApiClient.OnConnectionFailedLi
         locationRequest=LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(10000);
+        locationRequest.setSmallestDisplacement(0500);
         geocoder=new Geocoder(c, Locale.ENGLISH);
 
         Log.e("", "onConnected: " );
@@ -155,6 +156,10 @@ public class LocationDataService implements GoogleApiClient.OnConnectionFailedLi
         }
         rideData.setCurrentSpeed(speed);
         rideData.distanceTotal(distance);
+        rideData.setTotalTime(timeDiff);
+        rideData.setCurrentSpeed(speed);
+        rideData.setDistanceKM(distance);
+        update.rideData(rideData);
         update.updateAverage(avgSpeed);
         update.updateSpeedGauge((float) speed);
         update.updateTotalDistance(distance);

@@ -10,6 +10,7 @@ public interface Update {
     void updateTotalDistance(double distance);
     void updateAverage(double avg);
     void updateTopSpeed(double top);
+    void rideData(RideData rideData);
 
 
 }
