@@ -40,5 +40,7 @@ dependencies {
     /*compile 'uk.co.chrisjenx:calligraphy:2.3.0'//for fonts set*/
     compile 'agency.tango.android:material-intro-screen:+'//for app intro
     compile 'com.airbnb.android:lottie:2.1.0'
+    //compile 'com.github.javiersantos:MaterialStyledDialogs:2.1'
+
     testCompile 'junit:junit:4.12'
 }

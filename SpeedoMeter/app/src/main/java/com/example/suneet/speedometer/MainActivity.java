@@ -1,8 +1,9 @@
 package com.example.suneet.speedometer;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.AssetManager;
@@ -12,15 +13,15 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telecom.TelecomManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,12 +29,11 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.github.anastr.speedviewlib.base.Gauge;
-import com.github.anastr.speedviewlib.base.Speedometer;
-import com.github.anastr.speedviewlib.util.OnSpeedChangeListener;
 
 
-import java.io.IOException;
+
 import java.util.Locale;
+import java.util.zip.Inflater;
 
 public class MainActivity extends Activity implements Update, View.OnClickListener {
     //menu layout
@@ -65,6 +65,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
     LottieAnimationView lottieAnimationView;
     IntentFilter intentFilter;
     boolean flag;
+    int throttle;
 
 
 
@@ -119,8 +120,6 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
         else
             Toast.makeText(MainActivity.this,"Let's Drive! Please Click Button",Toast.LENGTH_LONG).show();
 
-
-
         AssetManager am=this.getAssets();
         Typeface typeface=Typeface.createFromAsset(am,String.format(Locale.US,"fonts/%s","PoiretOne-Regular.ttf"));
         Typeface gaugefont=Typeface.createFromAsset(am,String.format(Locale.US,"fonts/%s","Orbitron-Regular.ttf"));
@@ -139,6 +138,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
 
         startRide.setOnClickListener(this);
         stopRide.setOnClickListener(this);
+        menuIcon.setOnClickListener(this);
 
 
 
@@ -231,7 +231,41 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
 
 
         }
-        //if(v.getId()==R.id.)
+        if(v.getId()==R.id.menuIcon) {
+
+            View alert= LayoutInflater.from(this).inflate(R.layout.alert_dialog,null);
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            builder.setTitle("SpeedoMeter Throttle")
+                    .setIcon(R.drawable.icon_main)
+                    .setNeutralButton("Info", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .setCancelable(false)
+                    .setMessage("Enter the Speed above which you wanna drive without any hastle !!")
+                    .setView(alert)
+                    .setPositiveButton("Set Throttle", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            EditText editText= (EditText) findViewById(R.id.speedThrottle);
+                            throttle= Integer.parseInt(editText.getText().toString());
+                            Log.e("", "onClick: THROTTLE" +throttle);
+                        }
+                    })
+                    .setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+            AlertDialog dialog=builder.create();
+            dialog.show();
+
+
+
+        }
     }
     public boolean checkGps()
     {
