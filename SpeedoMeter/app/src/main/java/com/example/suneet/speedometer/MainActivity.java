@@ -183,11 +183,11 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
 
     }
 
-    @Override
+    /*@Override
     protected void onStart() {
         super.onStart();
         this.registerReceiver(receiver,intentFilter);
-    }
+    }*/
 
     /*@Override
     protected void onPause() {
@@ -219,6 +219,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
                 locationDataService.onRun();
                 startRide.setVisibility(View.GONE);
                 stopRide.setVisibility(View.VISIBLE);
+                this.registerReceiver(receiver,intentFilter);
                 flag=true;
                // lottieAnimationView.setAnimation("success.json");
                 //lottieAnimationView.playAnimation();
