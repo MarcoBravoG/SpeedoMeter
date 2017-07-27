@@ -82,7 +82,7 @@ public class LocationDataService implements GoogleApiClient.OnConnectionFailedLi
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-
+        Toast.makeText(c, "Connection Failed", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -139,11 +139,19 @@ public class LocationDataService implements GoogleApiClient.OnConnectionFailedLi
             distance=distance/1000;
         }
 
-
+        Log.e("TAG", "onLocationChanged: DISTANCE"+distance);
+        Log.e("TAG", "onLocationChanged: TIME"+timeDiff);
         avgSpeed=distance/timeDiff;
 
         rideData.setCurrentSpeed(location.getSpeed());
-        rideData.setAvgSpeed(avgSpeed);
+        if(Double.isInfinite(avgSpeed)) {
+            rideData.setAvgSpeed(0);
+            update.updateAverage(rideData.getAvgSpeed());
+        }
+        else
+        {
+            rideData.setAvgSpeed(avgSpeed);
+        }
         rideData.setCurrentSpeed(speed);
         rideData.distanceTotal(distance);
         update.updateAverage(avgSpeed);
