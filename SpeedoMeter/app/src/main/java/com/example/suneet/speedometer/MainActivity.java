@@ -2,6 +2,7 @@ package com.example.suneet.speedometer;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -236,7 +237,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
 
             View alert= LayoutInflater.from(this).inflate(R.layout.alert_dialog,null);
             speedThrottle= (EditText) alert.findViewById(R.id.speedThrottle);
-            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            final AlertDialog.Builder builder=new AlertDialog.Builder(this);
             builder.setTitle("SpeedoMeter Throttle")
                     .setIcon(R.drawable.app_icon100)
 
@@ -246,14 +247,35 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
                     .setNeutralButton("Info", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                              AlertDialog.Builder builder1=new AlertDialog.Builder(MainActivity.this);
+                              builder1.setIcon(R.drawable.info_icon)
+                                      .setTitle("Info")
+                                      .setMessage("This App lets you drive hassle free without any calls and other disturbances." +
+                                              "\nThe driver enters the throttle speed in KM/HR and if they drive beyond this " +
+                                              "speed the calls will be disconnected automatically. \n Hope you like the concept !!")
+                                      .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                          @Override
+                                          public void onClick(DialogInterface dialog, int which) {
+
+                                          }
+                                      });
+                            AlertDialog dialog1=builder1.create();
+                            dialog1.show();
 
                         }
                     })
                    .setPositiveButton("Set Throttle", new DialogInterface.OnClickListener() {
                        @Override
                        public void onClick(DialogInterface dialog, int which) {
-                           throttle= Integer.parseInt(speedThrottle.getText().toString());
-                           Toast.makeText(MainActivity.this, "Throttle Set to "+throttle, Toast.LENGTH_SHORT).show();
+                           try {
+                               throttle = Integer.parseInt(speedThrottle.getText().toString());
+                               Toast.makeText(MainActivity.this, "Throttle Set to "+throttle, Toast.LENGTH_SHORT).show();
+                           }
+                           catch (Exception e)
+                           {
+                               speedThrottle.setHint("Enter suitable speed");
+                               Toast.makeText(MainActivity.this,"Enter suitable throttle",Toast.LENGTH_SHORT).show();
+                           }
                        }
                    })
                     .setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
@@ -265,7 +287,6 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
                     });
             AlertDialog dialog=builder.create();
             dialog.show();
-
 
 
         }

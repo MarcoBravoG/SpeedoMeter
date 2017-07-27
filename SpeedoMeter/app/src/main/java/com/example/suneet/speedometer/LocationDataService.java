@@ -146,6 +146,7 @@ public class LocationDataService implements GoogleApiClient.OnConnectionFailedLi
         rideData.setCurrentSpeed(location.getSpeed());
         if(Double.isInfinite(avgSpeed)) {
             rideData.setAvgSpeed(0);
+            Log.e("TAG", "onLocationChanged: Average 0" );
             update.updateAverage(rideData.getAvgSpeed());
         }
         else
