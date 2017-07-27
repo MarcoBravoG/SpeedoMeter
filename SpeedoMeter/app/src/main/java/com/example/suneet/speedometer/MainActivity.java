@@ -252,9 +252,8 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
                     //.setSubText("Your Previous Journey Details")
                     .setContentText("Start Location "+rideData.getStartLocation()+"\n"
                                     +"End Location "+currentLocation.getText().toString()+"\n"
-                                    +"Time Elapsed" +rideData.getTotalTime()+"\n"
-                                    )
-                    .setContentTitle("Your Previous Journey Details")
+                                    +"Time Elapsed" +rideData.getTotalTime()+"\n")
+                    
                     .build();
             NotificationManager notificationManager= (NotificationManager) getSystemService(MainActivity.NOTIFICATION_SERVICE);
            notificationManager.notify(notificationFlag,notification);
