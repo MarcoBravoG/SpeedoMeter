@@ -88,7 +88,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
             Log.e("CALL", "onCreate:CALL " );
         }
         setContentView(R.layout.activity_main);
-        RideData rideData=new RideData();
+        //RideData rideData=new RideData();
 
         menuLayout = (LinearLayout) findViewById(R.id.menuLayout);
         appName= (TextView) findViewById(R.id.appName);
@@ -101,7 +101,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
         currentLocation= (TextView) findViewById(R.id.location);
         startRide= (Button) findViewById(R.id.startRideButton);
         stopRide= (Button) findViewById(R.id.stopRideButton);
-        speedThrottle= (EditText) findViewById(R.id.speedThrottle);
+
         lottieAnimationView= (LottieAnimationView) findViewById(R.id.animation_view);
         locationManager= (LocationManager) getSystemService(LOCATION_SERVICE);
         if(!(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)))
@@ -235,29 +235,31 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
         if(v.getId()==R.id.menuIcon) {
 
             View alert= LayoutInflater.from(this).inflate(R.layout.alert_dialog,null);
+            speedThrottle= (EditText) alert.findViewById(R.id.speedThrottle);
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
             builder.setTitle("SpeedoMeter Throttle")
                     .setIcon(R.drawable.app_icon100)
+
+                    .setCancelable(false)
+                    .setMessage("Enter the Speed above which you wanna drive without any hastle !!")
+                    .setView(alert)
                     .setNeutralButton("Info", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
                         }
                     })
-                    .setCancelable(false)
-                    .setMessage("Enter the Speed above which you wanna drive without any hastle !!")
-                    .setView(alert)
-                    .setPositiveButton("Set Throttle", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            throttle= Integer.parseInt(speedThrottle.getText().toString());
-                            Log.e("", "onClick: THROTTLE" +throttle);
-                        }
-                    })
+                   .setPositiveButton("Set Throttle", new DialogInterface.OnClickListener() {
+                       @Override
+                       public void onClick(DialogInterface dialog, int which) {
+                           throttle= Integer.parseInt(speedThrottle.getText().toString());
+                           Toast.makeText(MainActivity.this, "Throttle Set to "+throttle, Toast.LENGTH_SHORT).show();
+                       }
+                   })
                     .setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
 
                         }
                     });
