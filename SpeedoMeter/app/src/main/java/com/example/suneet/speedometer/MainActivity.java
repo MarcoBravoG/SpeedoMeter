@@ -58,7 +58,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
     //LocationServices
     LocationManager locationManager;
     Location location;
-
+    EditText speedThrottle;
     DataServices dataServices;
     LocationDataService locationDataService;
     BroadcastReceiver receiver;
@@ -101,6 +101,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
         currentLocation= (TextView) findViewById(R.id.location);
         startRide= (Button) findViewById(R.id.startRideButton);
         stopRide= (Button) findViewById(R.id.stopRideButton);
+        speedThrottle= (EditText) findViewById(R.id.speedThrottle);
         lottieAnimationView= (LottieAnimationView) findViewById(R.id.animation_view);
         locationManager= (LocationManager) getSystemService(LOCATION_SERVICE);
         if(!(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)))
@@ -236,7 +237,7 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
             View alert= LayoutInflater.from(this).inflate(R.layout.alert_dialog,null);
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
             builder.setTitle("SpeedoMeter Throttle")
-                    .setIcon(R.drawable.icon_main)
+                    .setIcon(R.drawable.app_icon100)
                     .setNeutralButton("Info", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -249,8 +250,8 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
                     .setPositiveButton("Set Throttle", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            EditText editText= (EditText) findViewById(R.id.speedThrottle);
-                            throttle= Integer.parseInt(editText.getText().toString());
+
+                            throttle= Integer.parseInt(speedThrottle.getText().toString());
                             Log.e("", "onClick: THROTTLE" +throttle);
                         }
                     })
