@@ -81,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:text="Total"
                 android:layout_gravity="top"
+                android:id="@+id/textTotalDistance"
                 android:textColor="@color/colorText"
                 android:textSize="23sp" />
             <TextView

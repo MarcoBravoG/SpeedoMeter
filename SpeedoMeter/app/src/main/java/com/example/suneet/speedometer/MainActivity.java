@@ -49,8 +49,11 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
     //Gauge Layout
     Gauge gauge;
     //Features Layout
+    TextView textTotalDistance;
     TextView totalDistance;
     //Relative Layout
+    TextView textAverage;
+    TextView textTop;
     TextView averageSpeed;
     TextView topSpeed;
     //LinearLayout
@@ -102,8 +105,11 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
         menuIcon= (ImageView) findViewById(R.id.menuIcon);
         notification= (ImageView) findViewById(R.id.notificationIcon);
         gauge = (Gauge) findViewById(R.id.speedometer);
+        textTotalDistance= (TextView) findViewById(R.id.textTotalDistance);
         totalDistance= (TextView) findViewById(R.id.totalDistance);
+        textAverage= (TextView) findViewById(R.id.average);
         averageSpeed= (TextView) findViewById(R.id.averageSpeed);
+        textTop= (TextView) findViewById(R.id.top);
         topSpeed= (TextView) findViewById(R.id.topSpeed);
         currentLocation= (TextView) findViewById(R.id.location);
         startRide= (Button) findViewById(R.id.startRideButton);
@@ -136,6 +142,9 @@ public class MainActivity extends Activity implements Update, View.OnClickListen
         topSpeed.setTypeface(gaugefont);
         averageSpeed.setTypeface(gaugefont);
         currentLocation.setTypeface(typeface);
+        textAverage.setTypeface(typeface);textTop.setTypeface(typeface);
+        textTotalDistance.setTypeface(typeface);
+
         gauge.setTextTypeface(gaugefont);
         gauge.setSpeedTextTypeface(gaugefont);
         gauge.setTextSize(24);
